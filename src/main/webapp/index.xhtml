@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+		<h1>Registration page go brrrrr</h1>
+
+		<div>
+			<h3>holy shit something works</h3>
+			<!-- <img src="resources/gfx/wildfly_400x130.jpg" /> -->
+		</div>
+		<h:form id="reg" style="background-color: #9dc29d">
+			<h2>Registration Form:</h2>
+			<h:panelGrid columns="3" columnClasses="titleCell">
+
+				<h:outputLabel for="name" value="Name:" />
+				<h:inputText id="name" value="#{newMember.name}" />
+				<!-- <h:message for="name" errorClass="invalid" /> -->
+
+				<h:outputLabel for="email" value="Email:" />
+				<h:inputText id="email" value="#{newMember.email}" />
+				<br />
+
+				<h:outputLabel for="password" value="Password:" />
+				<h:inputSecret id="password" value="#{newMember.password}" />
+				<br />
+
+				<p:outputLabel for="navigator" value="Birthday" style="" />
+				<p:datePicker id="navigator" value="#{newMember.dateOfBirth}"
+					monthNavigator="true" yearNavigator="true" yearRange="1920:2021" />
+				<br />
+
+			</h:panelGrid>
+			<p>
+				<h:panelGrid columns="2">
+					<h:commandButton id="register" action="#{memberView.register}"
+						value="Confirm" styleClass="register" />
+					<h:messages styleClass="messages" errorClass="invalid"
+						infoClass="valid" warnClass="warning" globalOnly="true" />
+				</h:panelGrid>
+			</p>
+		</h:form>
+		<!-- <h2>Members</h2> -->
+		<br />
+		<h:panelGroup rendered="#{empty members}">
+			<em>No registered members.</em>
+		</h:panelGroup>
+		<h:dataTable var="m" value="#{members}"
+			rendered="#{not empty members}" styleClass="simpletablestyle"
+			id="itemsDataTable">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+                #{m.id}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+                #{m.name}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Email</f:facet>
+                #{m.email}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Password</f:facet>
+                #{m.password}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Items</f:facet>
+				<ui:repeat var="i" value="#{makeList.list[m.items]}">
+					<h:outputText value="#{i.name}" />
+					<br />
+				</ui:repeat>
+			</h:column>
+			<h:column>
+				<f:facet name="header">REST URL</f:facet>
+				<a href="#{request.contextPath}/rest/members/#{_member.id}">user~#{m.id}</a>
+			</h:column>
+			<f:facet name="footer">
+            :<a href="#{request.contextPath}/rest/members/getAllMembers">REST
+					URL for all members</a>:
+			</f:facet>
+		</h:dataTable>
+
+	</ui:define>
+</ui:composition>

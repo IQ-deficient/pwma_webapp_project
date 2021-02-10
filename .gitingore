@@ -1,0 +1,7 @@
+/target/
+.classpath
+.jsdtscope
+.tern-project
+org.eclipse.*
+*.class
+bin

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>pwma_webapp</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<h:outputStylesheet name="css/screen.css" />
+</h:head>
+<h:body>
+	<div id="container">
+		<div class="dualbrand">
+			<!-- <img src="resources/gfx/dualbrand_logo.png" /> -->
+		</div>
+
+		<h:form>
+			<p:messages id="messages" showDetail="false" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+		</h:form>
+
+		<div id="content">
+			<ui:insert name="content">
+                    [Template content will be inserted here]
+         </ui:insert>
+		</div>
+		<div id="aside">
+			<p>Temporary side links:</p>
+			<ul>
+				<li><a onclick="newLocationReg()">Registration</a> <script> 
+  					function newLocationReg() { 
+        			window.location.href="/pwma_webapp/index.xhtml"; 
+    				} 
+  				</script></li>
+
+				<li><a onclick="newLocationLogIn()">Log In</a> <script> 
+  					function newLocationLogIn() { 
+        			window.location.href="/pwma_webapp/login.xhtml"; 
+    				} 
+  				</script></li>
+
+				<li><a onclick="newLocationAH()">Shop Homepage</a> <script> 
+  					function newLocationAH() { 
+        			window.location.href="/pwma_webapp/shop.xhtml"; 
+    				} 
+  				</script></li>
+
+				<li><button type="button" onclick="newLocationFront()">Quasar</button>
+					<script> 
+   					function newLocationFront() { 
+        			window.location.href="http://localhost:8080/#/"; 
+    				} 
+ 		 		</script></li>
+			</ul>
+		</div>
+		<div id="footer">
+			<p>
+				Vladimir Gazivoda 36-18<br />
+			</p>
+		</div>
+	</div>
+</h:body>
+</html>

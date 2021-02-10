@@ -1,0 +1,4 @@
+project -> properties -> disabled {
+	JBoss Knowledge Base Builder
+	CDI annotations
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+		<h1>Log In</h1>
+
+		<h:form id="loginForm" style="background-color: #cce0e6">
+			<h2>Email:</h2>
+			<h:inputText maxlength="255" size="20" tabindex="10"
+				value="#{userBean.login}" styleClass="inputField" id="email" required="true" requiredMessage="Email cannot be empty"/>
+			<h2>Password:</h2>
+			<h:inputSecret maxlength="255" size="20" tabindex="20"
+				value="#{userBean.password}" styleClass="inputField" id="password" required="true" requiredMessage="Password cannot be empty" />
+			<br />
+			<h:commandButton value="login" action="#{newMember.email}"
+				id="submit" />
+		</h:form>
+
+	</ui:define>
+</ui:composition>

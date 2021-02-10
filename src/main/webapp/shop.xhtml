@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+		<h1>PH Title for Shop</h1>
+
+		<h:form id="allItems">
+		
+		<h2>Set an item for auction</h2>
+		
+		<p:dataGrid value=""></p:dataGrid>
+		
+			<p:commandButton value="Add" oncomplete="PF('addItemDialog').show()"
+				process="@this">
+				<f:setPropertyActionListener value="#{memberView}"
+					target="#{memberView}" />
+			</p:commandButton>
+			
+			<p:dialog id="addItem" header="Set an item for auction" widgetVar="addItemDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true">
+				<p:outputPanel id="addItemId" style="text-align:center; width:400px;">
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Item title" />
+						<p:inputText value="#{memberView.item.name}" required="true" requiredMessage="Name is mandatory" />
+						
+						<p:outputLabel value="Price" />
+						<p:inputText value="#{memberView.item.price}" required="true" requiredMessage="Price value is required" />
+						
+						<p:commandButton value="Save" oncomplete="PF('addItemDialog').hide()" process="@this addItem" actionListener="#{memberView.addItem()}" update="itemsDataTable"/>
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		
+			<h2>Auctioned items:</h2>
+			<p:dataTable id="itemsDataTable" var="i" value="#{memberView.items}">
+				<p:column headerText="Name" filterBy="#{i.name}"
+					filterMatchMode="contains">
+					<h:outputText value="#{i.name}" />
+				</p:column>
+				<p:column headerText="Price" filterBy="#{i.price}"
+					filterMatchMode="contains">
+					<h:outputText value="#{i.price}" />
+				</p:column>
+				<p:column headerText="Seller" filterBy="#{i.member.name}"
+					filterMatchMode="contains">
+					<h:outputText value="#{i.member.name}" />
+				</p:column>
+
+				<f:facet name="footer">
+					<a href="#{request.contextPath}/rest/items/getAllItems">REST
+						URL for all available items</a>
+				</f:facet>
+
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
