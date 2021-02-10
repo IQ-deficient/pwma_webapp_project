@@ -95,6 +95,7 @@ public class Member implements Serializable {
 	@Transient
 	private Integer age;
 
+	@Column(name = "dateofbirth", nullable = true)
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 	// @Temporal(TemporalType.TIMESTAMP)
